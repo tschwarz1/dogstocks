@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+{% block main %}
+{% if not data %}
+<h3>No transactions for this user </h3>
+{% else %}
+
+
+    
+        <h3>TRANSACTIONS FOR USER</h3>
+        <table class="table table-striped">
+        <thead class="thead-dark">
+                <tr>
+                  <th scope="col">TRADE ID</th>
+                  <th scope="col">TIME</th>
+                  <th scope="col">STOCK</th>
+                  <th scope="col">UNIT PRICE</th>
+                  <th scope="col">QUANTITY</th>
+                  <th scope="col">VALUE</th>
+                </tr>
+              </thead>
+      <tbody>
+
+        {% for row in data %}
+                    <tr>
+                        <th scope='row'>{{ row[0] }}</th>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ "$%.2f"|format(row[3]) }}</td>
+                        <td>{{ row[4] }}</td>
+                        <td>{{ "$%.2f"|format(row[5]) }}</td>
+
+                    </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+
+  
+{% endif %}
+{% endblock %}

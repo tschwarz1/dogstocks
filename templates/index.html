@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+{% block main %}
+{% if empty == True %}
+<h3>You do not have any holdings!</h3>
+        <table class="table table-striped">
+        <thead class="thead-dark">
+                <tr>
+                  <th scope="col">STOCK</th>
+                  <th scope="col">SYMBOL</th>
+                  <th scope="col">UNIT PRICE</th>
+                  <th scope="col">QUANTITY</th>
+                  <th scope="col">VALUE</th>
+                </tr>
+              </thead>
+      <tbody>
+                    <tr>
+                        <td id='alnright' colspan="4"><b>CASH ON HAND</b></td>
+                        <td>{{ "$%.2f"|format(cash[0]['cash']) }}</td>
+                    </tr>
+        </tbody>
+    </table>
+
+<style>    #alnright { text-align: right !important; } </style>
+{% elif empty == False %}
+        <h3>CURRENT HOLDINGS</h3>
+        <table class="table table-striped">
+        <thead class="thead-dark">
+                <tr>
+                  <th scope="col">STOCK</th>
+                  <th scope="col">SYMBOL</th>
+                  <th scope="col">UNIT PRICE</th>
+                  <th scope="col">QUANTITY</th>
+                  <th scope="col">VALUE</th>
+                </tr>
+              </thead>
+      <tbody>
+        {% for row in data %}
+                    <tr>
+                        <th scope='row'>{{ row[0] }}</th>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ "$%.2f"|format(row[2]) }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ "$%.2f"|format(row[4]) }}</td>
+                    </tr>
+        {% endfor %}
+                    <tr>
+                        <td id='alnright' colspan="4"><b>CASH ON HAND</b></td>
+                        <td>{{ "$%.2f"|format(cash[0]['cash']) }}</td>
+                    </tr>
+      </tbody>
+    </table>
+<style>    #alnright { text-align: right !important; } </style>
+{% endif %}
+{% endblock %}

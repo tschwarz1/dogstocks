@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Bought
+{% endblock %}
+
+{% block main %}
+    <h3>BOUGHT</h3>
+      <p>User <b>{{ user[0]['username'] }} </b>you bought {{ quantity }}</b> of <b>{{ stock }}</b> at price of <b>{{ "$%.2f"|format(price['price']) }}</b> for <b>{{ "$%.2f"|format(value) }}</b></p>
+      <p><a href="/" class="link-primary">View Holdings</a></p>
+
+
+
+
+
+{% endblock %}
+
+

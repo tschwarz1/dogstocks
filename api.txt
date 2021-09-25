@@ -1,0 +1,75 @@
+pk_2557467f9eea46bdb0afd6e5ce96b26e
+
+export API_KEY=value
+export API_KEY=pk_2557467f9eea46bdb0afd6e5ce96b26e
+
+Display - not table
+username
+cash
+portfolio value
+
+USERS
+-id
+-username
+-hash
+-cash
+
+
+HOLDINGS
+-holding id
+-user id
+-stock
+-quantity
+
+buy
+-get stock price
+-value = price * quantity
+-get cash value, subtract value, update database !!!HERE
+add to holdings
+-user id from USERS/ID
+-stock ticker
+-quantity
+
+
+
+TODO ---------------------
+
+TRANSACTIONS
+-transaction id
+-user id
+-time
+-quantity
+-stock
+-unit price NUMERIC
+-value NUMERIC
+
+
+when bought
+-create new trans id, use user id, store price, value
+-users/cash =- transactions/value
+
+when sell
+-get new value
+-add value to cash + position and minus portfolio
+-update transaction id to 0
+
+
+SELECT stock_quantity FROM holdings WHERE user_id=4 AND stock_name='fb';
+
+
+TRANSACTION ROWS
+<th scope="col">TRADE ID</th>
+<th scope="col">TIME</th>
+<th scope="col">UNIT PRICE</th>
+<th scope="col">QUANTITY</th>
+<th scope="col">VALUE</th>
+
+when one tranasaction, transactions =
+[{'transaction_id': 31, 'transaction_time': '2021-09-21 09:03:51', 'unit_price': 3355.73,
+'quantity': 1, 'value': 3355.73}]
+
+when 2
+[{'transaction_id': 31, 'transaction_time': '2021-09-21 09:03:51', 'unit_price': 3355.73,
+'quantity': 1, 'value': 3355.73},
+{'transaction_id': 32, 'transaction_time': '2021-09-21 09:05:12', 'unit_price': 355.7,
+'quantity': 1, 'value': 355.7}]
