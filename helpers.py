@@ -47,6 +47,8 @@ def lookup(symbol):
     except requests.RequestException:
         return None
 
+
+
     # Parse response
     try:
         quote = response.json()
@@ -56,6 +58,30 @@ def lookup(symbol):
             "symbol": quote["symbol"]
         }
     except (KeyError, TypeError, ValueError):
+        return None
+
+
+def lookup_all():
+    """Look up quote for symbol."""
+
+    # Contact API
+    try:
+        api_key = os.environ.get("API_KEY")
+        url = f"https://cloud.iexapis.com/beta/ref-data/symbols?token={api_key}"
+        print("trying")
+        response = requests.get(url)
+        response.raise_for_status()
+    except requests.RequestException:
+        print("error")
+        return None
+
+    # Parse response
+    try:
+        quote = response.json()
+        print(quote)
+        return quote
+    except (KeyError, TypeError, ValueError):
+        print("error")
         return None
 
 

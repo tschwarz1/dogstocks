@@ -7,11 +7,59 @@
 {% block main %}
     <form action="/buy" method="post">
         <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="quantity" placeholder="quantity" type="text">
+            <input autocomplete="off" required pattern="[0-9]+" autofocus class="form-control" name="quantity" maxlength="5" placeholder="#" type="text">
         </div>
         <div class="form-group">
-            <input class="form-control" name="stock" placeholder="AMZN" type="text">
+            <input class="form-control" id="symbol" name="stock" placeholder="AMZN" type="text">
         </div>
         <button class="btn btn-primary" type="submit">Buy</button>
+        
     </form>
+    <ul id='below'></ul>
+    <script src="/static/large3.js"></script>
+    <script>
+        // const nameInput = document.querySelector('input');
+
+        // nameInput.addEventListener('input', () => {
+        //     if (nameInput.value < 1) {
+        //         nameInput.value = 1;
+        //     }
+        //     nameInput.setCustomValidity('');
+        //     nameInput.checkValidity();
+        // });
+
+        // nameInput.addEventListener('invalid'), () => {
+        //     nameInput.setCustomValidity('Positive integer only')
+        // }
+
+        let input = document.querySelector('#symbol');
+            input.addEventListener('keyup', function(event) {
+                let html = '';
+                if (input.value) {
+                    html += `<table class="table">
+                            <thead>
+                                <tr>
+                                    <th>symbol</th>
+                                    <th id='alnleft'>name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    for (word of WORDS) {
+                        if (word[0].startsWith(input.value.toUpperCase())) {
+                            html += `<tr>
+                                    <td>${word[0]}</td>
+                                    <td id='alnleft'>${word[1]}</td>
+                                    </tr>                                    
+                            `;
+                        }
+                    }
+                    html += `</tbody>
+                            </table>
+                    `;
+                }
+                document.querySelector('#below').innerHTML = html;
+            });
+    </script>
+    <style>    #alnleft { text-align: left !important; } </style>
 {% endblock %}
