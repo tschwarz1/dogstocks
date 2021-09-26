@@ -12,6 +12,9 @@ from helpers import apology, login_required, lookup, usd
 # Configure application
 app = Flask(__name__)
 
+app.secret_key = '\xa9V\xb2\xfc\x04?(\xbd9^;=\xc5\xb8\xde\xad\x1d!{\x9etR#Q\x0f\xf8"e\x8b\xbf\xc7\xe1'
+
+
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
